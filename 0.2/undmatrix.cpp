@@ -12,6 +12,8 @@ private:
 public:
     Graph();
     void Gprintf();
+    void Delete(int a,int b);
+    void Insert(int a,int b,int v);
 };
 Graph::Graph(){
     cout<<"Please Input the number of Vertex and Edge :"<<endl;
@@ -41,6 +43,7 @@ void Graph::Gprintf(){
     cout<<"       "<<endl;
     for(int i=0;i<numV;i++)
     printf("%7c",Vexs[i]);
+    cout<<endl;
     for(int i=0;i<numV;i++){
         printf("%7c",Vexs[i]);
         for(int j=0;j<numV;j++){
@@ -48,6 +51,14 @@ void Graph::Gprintf(){
         }
         cout<<endl;
     }
+}
+void Graph::Delete(int a,int b){
+    Matrix[a][b]=65535;
+    Matrix[b][a]=65535;
+}
+void Graph::Insert(int a,int b,int v){
+    Matrix[a][b]=v;
+    Matrix[b][a]=v;
 }
 int  main(){
     Graph graph;
