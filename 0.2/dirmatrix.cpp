@@ -12,7 +12,6 @@ private:
 public:
     Graph();
     void Gprintf();
-    ~Graph();
 };
 Graph::Graph(){
     cout<<"Please Input the number of Vertex and Edge :"<<endl;
@@ -28,21 +27,24 @@ Graph::Graph(){
                 Matrix[i][j]=INFINITY;
         }
     }
-    int i,j,v
+    int i,j,v;
+    cout<<"Please Input two vertex and their value"<<endl;
+    cout<<"a b v"<<endl;
     for(int k=0;k<numE;k++){
-        cout<<"Please Input two vertex and their value"<<endl;
         cin>>i>>j>>v;
         Matrix[i][j]=v;
     }
 }
 void Graph::Gprintf(){
-    for(int i;i<numV;i++){
-        for(int j;j<numV;j++){
+    for(int i=0;i<numV;i++){
+        for(int j=0;j<numV;j++){
             printf("%7d",Matrix[i][j]);
         }
         cout<<endl;
     }
 }
 int  main(){
-
+    Graph graph;
+    graph.Gprintf();
+    return 0;
 }

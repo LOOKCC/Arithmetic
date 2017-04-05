@@ -14,7 +14,7 @@ struct Vnode{
     int V;
     Enode* firE;
 }Ver[MAX];
-void Init(int numV){
+void Create(int numV){
     for(int i=1;i<numV;i++){
         Ver[i].V=i;
         Ver[i].firE=NULL;
@@ -43,19 +43,61 @@ void Inserttail(int a,int b,int v){
         p->next=q;
     }
 }
-void Inserthead(){
-
+void Inserthead(int a,int b,int v){
+    Enode *q=new Enode(b,v);
+    if(Ver[a].firE==NULL){
+        Ver[a].firE=q;
+    }
+    else{
+        Enode *p=Ver[a].firE;
+        q->next=p;
+        Ver[a].firE=q;
+    }
 }
-void Delete(){
-
+void Delete(int a,int b){
+    Enode *p=Ver[a].firE;
+    if(p->vertex==b){
+        Ver[a].firE=p->next;
+        delete p;
+        return ; 
+    }
+    while(p->next!=NULL){
+        if(p->next->vertex==b){
+            p->next=p->next->next;
+            delete p->next;
+            return ;
+        }
+    }
 }
 void Display(){
-
+    for(int i=0;i<numV;i++){
+        cout<<Ver[i].V;
+        Enode* p=Ver[i].firE;
+        while(p!=NULL){
+            cout<<"->("<<p->vertex<<","<<"Value :"<<p->value<<")";
+            p=p->next;
+        }
+        cout<<"->NULL"<<endl;
+    }
 }
-
 int main(){
-    cout<<"Please Input the number of vertex:"<<endl;
-    cin>>numV;
-    Init(numV);
-
+    cout<<"This is a dir graph"<<endl;
+    cout<<"Please Input the number of vertex and the Edge:"<<endl;
+    cin>>numV>>numE;
+    Create(numV);
+    cout<<"a b v"<<endl;
+    int a,b,v;
+    while(numE--){
+        cin>>a>>b>>v;
+        Inserttail(a,b,v);
+//      Inserthead(a,b,v);
+    }
+    cout<<"Create over"<<endl;
+    Display();
+    cout<<"Now you can delete a,b"<<endl;
+    cin>>a>>b;
+    Delete(a,b);
+    cout<<"delete over"<<endl;
+    Display();
+    return 0;
 }
