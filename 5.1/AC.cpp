@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 #include<cstring>
 using namespace std;
 const int letter=26;
@@ -18,7 +19,7 @@ node* Q[300000];
 void Init(){
     root=new (node); 
 }
-void inert(char* s,int num){
+void insert(char* s,int num){
     node* p=root;
     for(char* c=s;*c!='\0';++c){
         int t=(*c)-'a';
@@ -49,7 +50,7 @@ void BFP(){
                         p=p->fail;
                     }
                     if(p==NULL)
-                        now->child[i]=root;
+                        now->child[i]->fail=root;
                 }
                 Q[++Qt]=now->child[i];
             }
@@ -78,5 +79,20 @@ int find(char * str){
     return res;
 }
 int main(){
+    Init();
+    vector<char*> str;
+    char a1[]="her";
+    str.push_back(a1);
+    char a2[]="say";
+    str.push_back(a2);
+    char a3[]="she";
+    str.push_back(a3);
+    char a4[]="shr";
+    str.push_back(a4);
+    for(int i=0;i<str.size();i++){
+        insert(str[i],i);
+    }
+    BFP();
+    cout<<find(a3)<<endl;
     return 0;
 }
