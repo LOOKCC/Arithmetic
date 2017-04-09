@@ -1,5 +1,5 @@
 #include<iostream>
-#include<stdio.h>
+#include<iomanip>
 using namespace std;
 const int MAX=100;
 const int INFINITY=65535;
@@ -42,12 +42,15 @@ Graph::Graph(){
 void Graph::Gprintf(){
     cout<<"       "<<endl;
     for(int i=0;i<numV;i++)
-    printf("%7c",Vexs[i]);
+    //printf("%7c",Vexs[i]);
+    cout<<setw(7)<<Vexs[i];
     cout<<endl;
     for(int i=0;i<numV;i++){
-        printf("%7c",Vexs[i]);
+        //printf("%7c",Vexs[i]);
+        cout<<setw(7)<<Vexs[i];
         for(int j=0;j<numV;j++){
-            printf("%7d",Matrix[i][j]);
+            //printf("%7d",Matrix[i][j]);
+            cout<<setw(7)<<Matrix[i][j];
         }
         cout<<endl;
     }
