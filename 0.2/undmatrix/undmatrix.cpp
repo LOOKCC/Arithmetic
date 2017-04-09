@@ -1,20 +1,7 @@
 #include<iostream>
 #include<iomanip>
+#include"undmatrix.h"
 using namespace std;
-const int MAX=100;
-const int INFINITY=65535;
-class Graph{
-private:
-    char Vexs[MAX];
-    int numV;
-    int numE;
-    int Matrix[MAX][MAX];
-public:
-    Graph();
-    void Gprintf();
-    void Delete(int a,int b);
-    void Insert(int a,int b,int v);
-};
 Graph::Graph(){
     cout<<"Please Input the number of Vertex and Edge :"<<endl;
     cin>>numV>>numE;
@@ -62,9 +49,4 @@ void Graph::Delete(int a,int b){
 void Graph::Insert(int a,int b,int v){
     Matrix[a][b]=v;
     Matrix[b][a]=v;
-}
-int  main(){
-    Graph graph;
-    graph.Gprintf();
-    return 0;
 }
