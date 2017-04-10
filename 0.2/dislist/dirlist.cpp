@@ -15,7 +15,7 @@ struct Vnode{
     Enode* firE;
 }Ver[MAX];
 void Create(int numV){
-    for(int i=1;i<numV;i++){
+    for(int i=1;i<=numV;i++){
         Ver[i].V=i;
         Ver[i].firE=NULL;
     }
@@ -70,7 +70,7 @@ void Delete(int a,int b){
     }
 }
 void Display(){
-    for(int i=0;i<numV;i++){
+    for(int i=1;i<=numV;i++){
         cout<<Ver[i].V;
         Enode* p=Ver[i].firE;
         while(p!=NULL){

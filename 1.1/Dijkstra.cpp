@@ -2,7 +2,7 @@
 using namespace std;
 const int MAX=100;
 int numV,numE;
-int pos[MAX],heap_size,heap[MAX],dis[MAX];
+int pos[MAX],heap_size=0,heap[MAX],dis[MAX];
 bool in_heap[MAX];
 struct Enode{
     int vertex;

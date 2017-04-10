@@ -1,6 +1,5 @@
 #include<iostream>
 #include<stack>
-#include<vector>
 using namespace std;
 const int MAX=100;
 int numV,numE;
@@ -84,9 +83,6 @@ void Display(Vnode Ver[]){
         cout<<"->NULL"<<endl;
     }
 }
-void Displaytree(Vnode tree[]){
-
-}
 void swap(int i,int j){
     int temp=heap[i];
     heap[i]=heap[j];
@@ -126,26 +122,18 @@ int get(){
     }
     return res;
 }
-int dijkstra(int a1,int a2){
-    stack<int> sequence;
-    put(a1);
-    dis[a1]=0;
+void dijkstra(stack<int> small[]){
+    put(1);
+    dis[1]=0;
     while(heap_size>0){
         int top=get();
-        sequence.push(top);
-        if(top==a2){
-            int x1=sequence.top();
-            sequence.pop();
-            int x2=sequence.top();
-            sequence.empty();
-            x2=x2*10+x1;
-            return x2;
-            break;
-        }
         Enode* temp=Ver[top].firE;
         while(temp!=NULL){
             if(dis[temp->vertex]>dis[top]+temp->value){
                 dis[temp->vertex]=dis[top]+temp->value;
+                int x=top*10+temp->vertex;
+               // cout<<x<<endl;
+                small[temp->vertex].push(x);
                 if(in_heap[temp->vertex])
                     shift_up(pos[temp->vertex]);
                 else
@@ -154,52 +142,13 @@ int dijkstra(int a1,int a2){
             temp=temp->next;
         }
     }
-    return 0;
 }
-/*
-struct treenode{
-    int now;
-    treenode* brother;
-    treenode* children;
-};
-struct treenode* createtree(int tree1[]){
-    treenode* head=new (struct treenode);
-    head->now=1;
-    head->brother=NULL;
-    head->children=NULL;
-    bool have=false;
-    for(int i=2;i<=numV;i++){
-        if(tree1[i]!=0){
-            treenode* node=new (struct treenode);
-            node->now=tree1[i]%10;
-            node->brother=NULL;
-            node->children=NULL;
-            if(!have){
-                head->children=node;
-                have=true;
-            }else{
-                treenode* temp=head->children;
-                while(temp->brother)
-                    temp=temp->brother;
-                temp->brother=node;
-            }
-        }
-    }
-    return head;
-}
-struct treenode* addtree(treenode* head,int tree[]){
-    for(int i=2 ;i<numV+1;i++){
-        if(tree[i]>20){
-            
-        }
-    }
-}
-*/
 int main(){
     cout<<"This is a dir graph"<<endl;
     cout<<"Please Input the number of vertex and the Edge:"<<endl;
     cin>>numV>>numE;
     Create(numV,Ver);
+    stack<int> small[numV+1];
     cout<<"a b v"<<endl;
     int a,b,v;
     while(numE--){
@@ -208,35 +157,15 @@ int main(){
     }
     cout<<"Create over"<<endl;
     Display(Ver);
-
-//Begin to find 
-    for(int i=1;i<=numV;i++)
-        dis[i]=100;
-//    int tree1[numV+1];
-    int mtree[numV+1];
-    for(int i=0;i<=numV+1;i++){
-        mtree[i]=0;
-//        tree1[i]=0;
-    }
+    cout<<endl;
     for(int i=2;i<=numV;i++){
-        mtree[i]=dijkstra(1,i);
-        cout<<mtree[i]<<endl;
-//        if(tree[i]>10&&tree[i]<20){
-//            tree1[i]=tree[i];
-//        }
+        dis[i]=100;
     }
-//    struct treenode* head=new (treenode);
-//    head=createtree(tree1);
-//    head=addtree(head,tree);
-
-/*
+     dijkstra(small);
      Create(numV,tree);
-     for(int i=1;i<=numV;i++){
-         Inserttail(mtree[i]/10,mtree[i]%10,1,tree);
+     for(int i=2;i<=numV;i++){
+         Inserttail(small[i].top()/10,small[i].top()%10,1,tree);
      }
      Display(tree);
-
-
-*/
     return 0;
 }
