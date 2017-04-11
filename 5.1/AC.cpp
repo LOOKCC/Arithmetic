@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #include<vector>
 #include<cstring>
 using namespace std;
@@ -15,12 +16,13 @@ struct node{
     }
 };
 node* root;
-node* Q[300000];
+node* Q[3000000];
 void Init(){
     root=new (node); 
 }
 void insert(char* s,int num){
     node* p=root;
+ //   cout<<"insert begin"<<endl;
     for(char* c=s;*c!='\0';++c){
         int t=(*c)-'a';
         if(p->child[t]==NULL){
@@ -30,8 +32,10 @@ void insert(char* s,int num){
         if((*(c+1))=='\0')
             p->pos=num;
     }
+ //   cout<<"insert over"<<endl;
 }
 void BFP(){
+ //   cout<<"begin to build fail point"<<endl;
     int Qh=0,Qt=1;
     Q[1]=root;
     while(Qh<Qt){
@@ -56,12 +60,16 @@ void BFP(){
             }
         }
     }
+//    cout<<"build over"<<endl;
 }
 int find(char * str){
+ //   cout<<"begin to find"<<endl;
     int len=strlen(str);
-    int res;
+//    cout<<len<<endl;
+    int res=-1;
     node* p=root;
     for(int i=0;i<len;i++){
+   //     cout<<i<<endl;
         int index;
         index=str[i]-'a';
         while (p->child[index]==NULL && p!=root)
@@ -70,16 +78,18 @@ int find(char * str){
             continue;
         p=p->child[index];
         node* t=p;
-        while(t!=root){
-            if(t->pos!=-1)
-                res=t->pos;
+        while(t!=root&&t->pos!=-1){
+            res=t->pos;
+            t->pos=-2;
             t=t->fail;
         }
     }
+ //   cout<<"find over"<<endl;
     return res;
 }
 int main(){
     Init();
+/*
     vector<char*> str;
     char a1[]="her";
     str.push_back(a1);
@@ -92,7 +102,27 @@ int main(){
     for(int i=0;i<str.size();i++){
         insert(str[i],i);
     }
+*/
+    char* a100=new char[1000000];
+    char* a200=new char[2000000];
+    ifstream fin100;
+    ifstream fin200;
+    fin100.open("100a.txt");
+    if(fin100.is_open())
+        cout<<"100isopen"<<endl;
+    fin200.open("200a.txt");
+    if(fin200.is_open())
+        cout<<"200isopen"<<endl;
+    fin100>>a100;
+  //  cout<<"the a100 lenfth is "<<strlen(a100)<<endl;
+    fin200>>a200;
+  //   cout<<"the a200 lenfth is "<<strlen(a200)<<endl;
+    insert(a100,0);
     BFP();
-    cout<<find(a3)<<endl;
+    cout<<find(a200)<<endl;
+    delete []a100;
+    delete []a200;
+    fin100.close();
+    fin200.close();
     return 0;
 }
