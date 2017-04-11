@@ -4,13 +4,14 @@
 #include<cstring>
 using namespace std;
 const int letter=26;
+vector<int> res;
 struct node{
     node* fail;
     node* child[letter];
     int pos;
     node(){
         fail=NULL;
-        for(int i;i<letter;i++)
+        for(int i=0;i<letter;i++)
             child[i]=NULL;
         pos=-1;
     }
@@ -62,11 +63,10 @@ void BFP(){
     }
 //    cout<<"build over"<<endl;
 }
-int find(char * str){
+void find(char * str){
  //   cout<<"begin to find"<<endl;
     int len=strlen(str);
 //    cout<<len<<endl;
-    int res=-1;
     node* p=root;
     for(int i=0;i<len;i++){
    //     cout<<i<<endl;
@@ -79,18 +79,19 @@ int find(char * str){
         p=p->child[index];
         node* t=p;
         while(t!=root&&t->pos!=-1){
-            res=t->pos;
-            t->pos=-2;
+            res.push_back(t->pos);
+            t->pos=-1;
             t=t->fail;
         }
     }
  //   cout<<"find over"<<endl;
-    return res;
+
 }
 int main(){
     Init();
-/*
+
     vector<char*> str;
+/*
     char a1[]="her";
     str.push_back(a1);
     char a2[]="say";
@@ -117,9 +118,20 @@ int main(){
   //  cout<<"the a100 lenfth is "<<strlen(a100)<<endl;
     fin200>>a200;
   //   cout<<"the a200 lenfth is "<<strlen(a200)<<endl;
+    str.push_back(a100);
     insert(a100,0);
     BFP();
-    cout<<find(a200)<<endl;
+    find(a200);
+    if(res.size()==0){
+        cout<<"no match"<<endl;
+    }else{
+        cout<<"we have match "<<res.size()<<"words, they are:"<<endl;
+        for(int i=0;i<res.size();i++){
+            cout<<i<<endl;
+            //cout<<str[i]<<endl;
+        }
+    }
+    res.empty();
     delete []a100;
     delete []a200;
     fin100.close();
