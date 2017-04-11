@@ -3,15 +3,22 @@ using namespace std;
 void Msort (int A[],int Temp[],int left,int right);
 void Merge(int A[],int Temp[],int Lstart,int Rstart,int Rend);
 int main(){
-    int A[5]={5,4,3,2,1};
-    int *Temp=new int[5];
+    int number;
+    cout<<"please input the number: ";
+    cin>>number;
+    int A[number];
+    cout<<"please input numbers"<<endl;
+    for(int i=0;i<number;i++){
+        cin>>A[i];
+    }
+    int *Temp=new int[number];
     if(Temp==NULL){
         cout<<"No Space"<<endl;
     }
-    Msort(A,Temp,0,4);
+    Msort(A,Temp,0,number-1);
     delete []Temp;
-    for(int i=0;i<5;i++){
-        cout<<A[i];
+    for(int i=0;i<number;i++){
+        cout<<A[i]<<" ";
     }
     cout<<endl;
     return 0;

@@ -1,7 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
-#include<cstring>
+#include<string>
 using namespace std;
 const int letter=26;
 vector<int> res;
@@ -21,16 +21,16 @@ node* Q[3000000];
 void Init(){
     root=new (node); 
 }
-void insert(char* s,int num){
+void insert(string s,int num){
     node* p=root;
  //   cout<<"insert begin"<<endl;
-    for(char* c=s;*c!='\0';++c){
-        int t=(*c)-'a';
+    for(int c=0;c<s.length();++c){
+        int t=s[c]-'a';
         if(p->child[t]==NULL){
             p->child[t]=new (node);
         }
         p=p->child[t];
-        if((*(c+1))=='\0')
+        if((c+1)==s.length())
             p->pos=num;
     }
  //   cout<<"insert over"<<endl;
@@ -63,12 +63,10 @@ void BFP(){
     }
 //    cout<<"build over"<<endl;
 }
-void find(char * str){
+void find(string str){
  //   cout<<"begin to find"<<endl;
-    int len=strlen(str);
-//    cout<<len<<endl;
     node* p=root;
-    for(int i=0;i<len;i++){
+    for(int i=0;i<str.length();i++){
    //     cout<<i<<endl;
         int index;
         index=str[i]-'a';
@@ -90,7 +88,7 @@ void find(char * str){
 int main(){
     Init();
 
-    vector<char*> str;
+    vector<string> str;
 /*
     char a1[]="her";
     str.push_back(a1);
@@ -104,8 +102,8 @@ int main(){
         insert(str[i],i);
     }
 */
-    char* a100=new char[1000000];
-    char* a200=new char[2000000];
+    string a100;
+    string a200;
     ifstream fin100;
     ifstream fin200;
     fin100.open("100a.txt");
@@ -132,8 +130,6 @@ int main(){
         }
     }
     res.empty();
-    delete []a100;
-    delete []a200;
     fin100.close();
     fin200.close();
     return 0;
