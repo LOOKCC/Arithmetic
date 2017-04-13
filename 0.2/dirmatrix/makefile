@@ -1,4 +1,4 @@
-dirmatrix.out:main.o dirmatrix.o
+a.out:main.o dirmatrix.o
 	g++ main.o dirmatrix.o -o a.out
 main.o:main.cpp
 	g++ -c main.cpp -o main.o

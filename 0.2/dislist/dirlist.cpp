@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-const int MAX=100;
+const int MAX=10000;
 int numV,numE;
 struct Enode{
     int vertex;
@@ -82,22 +82,27 @@ void Display(){
 }
 int main(){
     cout<<"This is a dir graph"<<endl;
-    cout<<"Please Input the number of vertex and the Edge:"<<endl;
-    cin>>numV>>numE;
+    cout<<"Please Input the number of vertex:"<<endl;
+    cin>>numV;
     Create(numV);
-    cout<<"a b v"<<endl;
+//    cout<<"a b v"<<endl;
     int a,b,v;
-    while(numE--){
-        cin>>a>>b>>v;
+    numE=0;
+    cin>>a>>b>>v;
+    while(a!=0&&b!=0&&v!=0){
         Inserttail(a,b,v);
+        numE++;
+        cin>>a>>b>>v;  
 //      Inserthead(a,b,v);
     }
-    cout<<"Create over"<<endl;
+//    cout<<"Create over"<<endl;
     Display();
+/*
     cout<<"Now you can delete a,b"<<endl;
     cin>>a>>b;
     Delete(a,b);
     cout<<"delete over"<<endl;
     Display();
+*/
     return 0;
 }

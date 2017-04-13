@@ -1,7 +1,8 @@
 #ifndef UNDMASTRIX_H_
 #define UNDMASTRIX_H_
-const int MAX=100;
+
 const int INFINITY=65535;
+const int MAX=100;
 class Graph{
 private:
     char Vexs[MAX];

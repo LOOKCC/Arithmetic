@@ -4,18 +4,28 @@
 using namespace std;
 Graph::Graph(){
     cout<<"Please Input the number of Vertex and Edge :"<<endl;
-    cin>>numV>>numE;
-    cout<<"Please Input the Vertex:"<<endl;
-    for(int i=0;i<numV;i++)
-    cin>>Vexs[i];
+    cin>>numV;
+//    cout<<"Please Input the Vertex:"<<endl;
+//    for(int i=0;i<numV;i++)
+//    cin>>Vexs[i];
     for(int i=0;i<numV;i++){
-        for(int j=0;j<numE;j++){
+        for(int j=0;j<numV;j++){
             if(i==j)
                 Matrix[i][j]=0;
             else
                 Matrix[i][j]=INFINITY;
         }
     }
+    int i,j, v;
+    cin>>i>>j>>v;
+    numE=1;
+    while(i!=0&&j!=0&&v!=0){
+        Matrix[i-1][j-1]=v;
+        Matrix[j-1][i-1]=v;
+        numE++;
+        cin>>i>>j>>v;
+    }
+/*
     int i,j,v;
     cout<<"Please Input two vertex and their value"<<endl;
     cout<<"a b v"<<endl;
@@ -25,26 +35,26 @@ Graph::Graph(){
 //defferent
         Matrix[j][i]=v;
     }
+*/
 }
 void Graph::Gprintf(){
-    cout<<"       "<<endl;
+    cout<<"       ";
     for(int i=0;i<numV;i++)
-    //printf("%7c",Vexs[i]);
-    cout<<setw(7)<<Vexs[i];
+//    cout<<setw(7)<<Vexs[i];
+        cout<<setw(7)<<i+1;
     cout<<endl;
     for(int i=0;i<numV;i++){
-        //printf("%7c",Vexs[i]);
-        cout<<setw(7)<<Vexs[i];
+//        cout<<setw(7)<<Vexs[i];
+        cout<<setw(7)<<i+1;
         for(int j=0;j<numV;j++){
-            //printf("%7d",Matrix[i][j]);
             cout<<setw(7)<<Matrix[i][j];
         }
         cout<<endl;
     }
 }
 void Graph::Delete(int a,int b){
-    Matrix[a][b]=65535;
-    Matrix[b][a]=65535;
+    Matrix[a][b]=INFINITY;
+    Matrix[b][a]=INFINITY;
 }
 void Graph::Insert(int a,int b,int v){
     Matrix[a][b]=v;

@@ -4,10 +4,10 @@ void Msort (int A[],int Temp[],int left,int right);
 void Merge(int A[],int Temp[],int Lstart,int Rstart,int Rend);
 int main(){
     int number;
-    cout<<"please input the number: ";
+   // cout<<"please input the number: ";
     cin>>number;
     int A[number];
-    cout<<"please input numbers"<<endl;
+  //  cout<<"please input numbers"<<endl;
     for(int i=0;i<number;i++){
         cin>>A[i];
     }
@@ -17,9 +17,9 @@ int main(){
     }
     Msort(A,Temp,0,number-1);
     delete []Temp;
-    for(int i=0;i<number;i++){
-        cout<<A[i]<<" ";
-    }
+   // for(int i=0;i<number;i++){
+   //     cout<<A[i]<<" ";
+   // }
     cout<<endl;
     return 0;
 }

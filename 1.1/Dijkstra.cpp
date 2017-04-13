@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-const int MAX=100;
+const int MAX=10000;
 int numV,numE;
 int pos[MAX],heap_size=0,heap[MAX],dis[MAX];
 bool in_heap[MAX];
@@ -144,28 +144,28 @@ void dijkstra(int a1,int a2){
 
 int main(){
     cout<<"This is a dir graph"<<endl;
-    cout<<"Please Input the number of vertex and the Edge:"<<endl;
-    cin>>numV>>numE;
+    cout<<"Please Input the number of vertex:"<<endl;
+    cin>>numV;
     Create(numV);
-    cout<<"a b v"<<endl;
+//    cout<<"a b v"<<endl;
     int a,b,v;
-    while(numE--){
-        cin>>a>>b>>v;
+    numE=0;
+    cin>>a>>b>>v;
+    while(a!=0&&b!=0&&v!=0){
         Inserttail(a,b,v);
-//      Inserthead(a,b,v);
+        numE++;
+        cin>>a>>b>>v;  
     }
-    cout<<"Create over"<<endl;
-    Display();
-//    cout<<"Now you can delete a,b"<<endl;
-//    cin>>a>>b;
-//    Delete(a,b);
-//    cout<<"delete over"<<endl;
+//    cout<<"Create over"<<endl;
 //    Display();
-
 //Begin to find 
     for(int i=1;i<=numV;i++)
         dis[i]=100;
-    dijkstra(1,4);
-    cout<<dis[4]<<endl;
+    
+    int a1,a2;
+    cin>>a1>>a2;
+    dijkstra(a1,a2);
+    cout<<dis[a2]<<endl;
+
     return 0;
 }

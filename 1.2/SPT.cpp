@@ -1,7 +1,7 @@
 #include<iostream>
 #include<stack>
 using namespace std;
-const int MAX=100;
+const int MAX=10000;
 int numV,numE;
 int pos[MAX],heap_size,heap[MAX],dis[MAX];
 bool in_heap[MAX];
@@ -131,9 +131,8 @@ void dijkstra(stack<int> small[]){
         while(temp!=NULL){
             if(dis[temp->vertex]>dis[top]+temp->value){
                 dis[temp->vertex]=dis[top]+temp->value;
-                int x=top*10+temp->vertex;
                // cout<<x<<endl;
-                small[temp->vertex].push(x);
+                small[temp->vertex].push(top);
                 if(in_heap[temp->vertex])
                     shift_up(pos[temp->vertex]);
                 else
@@ -145,27 +144,39 @@ void dijkstra(stack<int> small[]){
 }
 int main(){
     cout<<"This is a dir graph"<<endl;
-    cout<<"Please Input the number of vertex and the Edge:"<<endl;
-    cin>>numV>>numE;
+    cout<<"Please Input the number of vertex:"<<endl;
+    cin>>numV;
+    cout<<numV<<endl;
     Create(numV,Ver);
     stack<int> small[numV+1];
-    cout<<"a b v"<<endl;
+    for(int i;i<=numV;i++){
+        small[i].push(0);
+    }
+//    cout<<"a b v"<<endl;
     int a,b,v;
-    while(numE--){
-        cin>>a>>b>>v;
+    numE=0;
+    cin>>a>>b>>v;
+    while(a!=0&&b!=0&&v!=0){
         Inserttail(a,b,v,Ver);
+        numE++;
+        cin>>a>>b>>v;  
     }
     cout<<"Create over"<<endl;
     Display(Ver);
     cout<<endl;
+/*    
     for(int i=2;i<=numV;i++){
         dis[i]=100;
     }
      dijkstra(small);
      Create(numV,tree);
      for(int i=2;i<=numV;i++){
-         Inserttail(small[i].top()/10,small[i].top()%10,1,tree);
+         if(small[i].top()==0){
+            continue;
+         }
+         Inserttail(small[i].top(),i,1,tree);
      }
      Display(tree);
+*/
     return 0;
 }
