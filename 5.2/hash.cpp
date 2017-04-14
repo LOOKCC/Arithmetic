@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #include<string>
 #include<vector>
 using namespace std;
@@ -64,17 +65,25 @@ void Delete(string str,Hash* h){
     delete pos;
 }
 int main(){
-    Hash* H;
-    H=Create(20);
-    vector<string> str;
-    str.push_back("cat");
-    str.push_back("dog");
-    str.push_back("phone");
-    str.push_back("shoes");
-    for(int i=0;i<str.size();i++){
-        Insert(str[i],H);
+    vector<string> strs;
+    ifstream fin;
+    fin.open("flipped.txt");
+    string str;
+    while(fin>>str){
+        strs.push_back(str);
     }
-    Listnode* p=Find(H,"phone");
-    cout<<p->str<<endl;
+    Hash* H;
+    H=Create(100);
+    for(int i=0;i<strs.size();i++){
+        Insert(strs[i],H);
+    }
+    string tofind;
+    cin>>tofind;
+    Listnode* p=Find(H,tofind);
+    if(p==NULL){
+        cout<<"can't find"<<endl;
+    }else
+        cout<<p->str<<endl;
+    fin.close();
     return 0;
 }

@@ -1,4 +1,5 @@
 #include<iostream>
+#include<iomanip>
 #include<stdio.h>
 using namespace std;
 const int MAX=100;
@@ -17,16 +18,25 @@ public:
     void TC();
 };
 Graph::Graph(){
-    cout<<"Please Input the number of Vertex and Edge :"<<endl;
-    cin>>numV>>numE;
-    cout<<"Please Input the Vertex:"<<endl;
-    for(int i=1;i<=numV;i++)
-    cin>>Vexs[i];
+    cout<<"Please Input the number of Vertex:"<<endl;
+    cin>>numV;
+//    cout<<"Please Input the Vertex:"<<endl;
+//    for(int i=1;i<=numV;i++)
+//    cin>>Vexs[i];
     for(int i=1;i<=numV;i++){
-        for(int j=1;j<=numE;j++){
+        for(int j=1;j<=numV;j++){
                 Matrix[i][j]=0;
         }
     }
+    int i,j, v;
+    cin>>i>>j>>v;
+    numE=1;
+    while(i!=0&&j!=0&&v!=0){
+        Matrix[i-1][j-1]=v;
+        numE++;
+        cin>>i>>j>>v;
+    }
+/*
     int i,j,v;
     cout<<"Please Input two vertex and their value"<<endl;
     cout<<"a b v"<<endl;
@@ -34,16 +44,19 @@ Graph::Graph(){
         cin>>i>>j>>v;
         Matrix[i][j]=1;
     }
+*/
 }
 void Graph::Gprintf(){
     cout<<"       ";
-    for(int i=1;i<=numV;i++)
-    printf("%7c",Vexs[i]);
+    for(int i=0;i<numV;i++)
+//    cout<<setw(7)<<Vexs[i];
+        cout<<setw(7)<<i+1;    
     cout<<endl;
-    for(int i=1;i<=numV;i++){
-        printf("%7c",Vexs[i]);
-        for(int j=1;j<=numV;j++){
-            printf("%7d",Matrix[i][j]);
+    for(int i=0;i<numV;i++){
+        //cout<<setw(7)<<Vexs[i];
+        cout<<setw(7)<<i+1;
+        for(int j=0;j<numV;j++){
+           cout<<setw(7)<<Matrix[i][j];
         }
         cout<<endl;
     }
@@ -80,6 +93,7 @@ void Graph::TC(){
 int  main(){
     Graph graph;
     graph.Gprintf();
+    cout<<endl;
     graph.TC();
     graph.Gprintf();
     return 0;

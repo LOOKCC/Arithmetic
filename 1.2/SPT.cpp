@@ -17,19 +17,19 @@ struct Vnode{
     int V;
     Enode* firE;
 }Ver[MAX],tree[MAX];
-void Create(int numV,Vnode Ver[]){
+void Create(int numV,Vnode Ve[]){
     for(int i=1;i<=numV;i++){
-        Ver[i].V=i;
-        Ver[i].firE=NULL;
+        Ve[i].V=i;
+        Ve[i].firE=NULL;
     }
 }
-void Inserttail(int a,int b,int v,Vnode Ver[]){
+void Inserttail(int a,int b,int v,Vnode Ve[]){
     Enode *q=new Enode(b,v);
-    if(Ver[a].firE==NULL){
-        Ver[a].firE=q;
+    if(Ve[a].firE==NULL){
+        Ve[a].firE=q;
     }
     else{
-        Enode *p=Ver[a].firE;
+        Enode *p=Ve[a].firE;
         if(p->vertex==b){
             if(p->value<v)
                 p->value=v;
@@ -46,6 +46,7 @@ void Inserttail(int a,int b,int v,Vnode Ver[]){
         p->next=q;
     }
 }
+/*
 void Inserthead(int a,int b,int v){
     Enode *q=new Enode(b,v);
     if(Ver[a].firE==NULL){
@@ -72,10 +73,11 @@ void Delete(int a,int b){
         }
     }
 }
-void Display(Vnode Ver[]){
+*/
+void Display(Vnode Ve[]){
     for(int i=1;i<=numV;i++){
-        cout<<Ver[i].V;
-        Enode* p=Ver[i].firE;
+        cout<<Ve[i].V;
+        Enode* p=Ve[i].firE;
         while(p!=NULL){
             cout<<"->("<<p->vertex<<","<<"Value :"<<p->value<<")";
             p=p->next;
@@ -122,12 +124,12 @@ int get(){
     }
     return res;
 }
-void dijkstra(stack<int> small[]){
+void dijkstra(stack<int> small[],Vnode Ve[]){
     put(1);
     dis[1]=0;
     while(heap_size>0){
         int top=get();
-        Enode* temp=Ver[top].firE;
+        Enode* temp=Ve[top].firE;
         while(temp!=NULL){
             if(dis[temp->vertex]>dis[top]+temp->value){
                 dis[temp->vertex]=dis[top]+temp->value;
@@ -143,10 +145,10 @@ void dijkstra(stack<int> small[]){
     }
 }
 int main(){
+
     cout<<"This is a dir graph"<<endl;
     cout<<"Please Input the number of vertex:"<<endl;
     cin>>numV;
-    cout<<numV<<endl;
     Create(numV,Ver);
     stack<int> small[numV+1];
     for(int i;i<=numV;i++){
@@ -161,14 +163,12 @@ int main(){
         numE++;
         cin>>a>>b>>v;  
     }
-    cout<<"Create over"<<endl;
-    Display(Ver);
-    cout<<endl;
-/*    
+//    cout<<"Create over"<<endl;
+    
     for(int i=2;i<=numV;i++){
         dis[i]=100;
     }
-     dijkstra(small);
+     dijkstra(small,Ver);
      Create(numV,tree);
      for(int i=2;i<=numV;i++){
          if(small[i].top()==0){
@@ -177,6 +177,5 @@ int main(){
          Inserttail(small[i].top(),i,1,tree);
      }
      Display(tree);
-*/
-    return 0;
+     return 0;
 }

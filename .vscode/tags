@@ -8,12 +8,14 @@ a	../0.1/test.py	/^a="time ~\/code\/arithmetic\/0.1\/a.out"$/;"	kind:variable	li
 a	../0.2/test.py	/^a="time ~\/code\/arithmetic\/0.2\/dislist\/a.out"$/;"	kind:variable	line:5
 a	../1.1/test.py	/^a="time ~\/code\/arithmetic\/1.1\/a.out"$/;"	kind:variable	line:3
 a	../1.2/test.py	/^a="time ~\/code\/arithmetic\/1.2\/a.out"$/;"	kind:variable	line:3
+a	../1.3/test.py	/^a="time ~\/code\/arithmetic\/1.3\/a.out"$/;"	kind:variable	line:3
 cancross	../0.2/test.py	/^            cancross=random.randint(0,1)$/;"	kind:variable	line:13
 cancross	../1.1/test.py	/^            cancross=random.randint(0,1)$/;"	kind:variable	line:10
-cancross	../1.2/test.py	/^            cancross=random.randint(0,1)$/;"	kind:variable	line:10
+cancross	../1.2/test.py	/^            cancross=random.randint(0,1)$/;"	kind:variable	line:11
+cancross	../1.3/test.py	/^            cancross=random.randint(0,1)$/;"	kind:variable	line:11
 data	../0.2/test.py	/^                data=random.randint(1,5)$/;"	kind:variable	line:15
 data	../1.1/test.py	/^                data=random.randint(1,5)$/;"	kind:variable	line:12
-data	../1.2/test.py	/^                data=random.randint(1,5)$/;"	kind:variable	line:12
+data	../1.2/test.py	/^                data=random.randint(1,5)$/;"	kind:variable	line:13
 finput	../0.1/test.py	/^    finput=os.popen(a,"w")$/;"	kind:variable	line:5
 finput	../0.2/test.py	/^    finput=os.popen(a,"w")$/;"	kind:variable	line:9
 finput	../1.1/test.py	/^    finput=os.popen(a,"w")$/;"	kind:variable	line:6
@@ -21,18 +23,23 @@ finput	../1.2/test.py	/^    finput=os.popen(a,"w")$/;"	kind:variable	line:6
 num	../0.1/test.py	/^    num=str(count)+"\\n"$/;"	kind:variable	line:6
 numberlist	../0.2/test.py	/^numberlist=[10,50,100,500,1000]$/;"	kind:variable	line:7
 numberlist	../1.1/test.py	/^numberlist=[10,50,100,500,1000]$/;"	kind:variable	line:4
-numberlist	../1.2/test.py	/^numberlist=[10,50,100,500,1000]$/;"	kind:variable	line:4
+numberlist	../1.2/test.py	/^numberlist=[10]$/;"	kind:variable	line:4
+numberlist	../1.3/test.py	/^numberlist=[10]$/;"	kind:variable	line:4
 os	../0.1/test.py	/^import os$/;"	kind:namespace	line:1
 os	../0.2/test.py	/^import os$/;"	kind:namespace	line:2
 os	../1.1/test.py	/^import os$/;"	kind:namespace	line:2
 os	../1.2/test.py	/^import os$/;"	kind:namespace	line:2
+os	../1.3/test.py	/^import os$/;"	kind:namespace	line:2
 os	../5.1/text.py	/^import os$/;"	kind:namespace	line:1
 random	../0.2/test.py	/^import random$/;"	kind:namespace	line:1
 random	../1.1/test.py	/^import random$/;"	kind:namespace	line:1
 random	../1.2/test.py	/^import random$/;"	kind:namespace	line:1
+random	../1.3/test.py	/^import random$/;"	kind:namespace	line:1
 test.py	../0.1/test.py	1;"	kind:file	line:1
 test.py	../0.2/test.py	1;"	kind:file	line:1
 test.py	../1.1/test.py	1;"	kind:file	line:1
 test.py	../1.2/test.py	1;"	kind:file	line:1
+test.py	../1.3/test.py	1;"	kind:file	line:1
 text.py	../5.1/text.py	1;"	kind:file	line:1
+text.py	../5.2/text.py	1;"	kind:file	line:1
 textnumber	../0.1/test.py	/^textnumber=[1000,10000,100000,1000000,10000000]$/;"	kind:variable	line:3
